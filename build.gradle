@@ -11,15 +11,17 @@ repositories {
 
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter:5.10.1'
-    testImplementation 'com.codeborne:selenide:6.19.1'
-    testImplementation 'commons-io:commons-io:2.15.0'
+    testImplementation 'com.codeborne:selenide:6.12.3'
+    testImplementation 'org.assertj:assertj-core:3.24.2'
+    testImplementation 'com.opencsv:opencsv:5.8'
     testImplementation 'com.codeborne:pdf-test:1.5.0'
     testImplementation 'com.codeborne:xls-test:1.4.3'
-    testImplementation 'com.opencsv:opencsv:5.9'
-    testImplementation 'com.fasterxml.jackson.core:jackson-core:2.13.1'
-    testImplementation 'org.assertj:assertj-core:3.23.1'
-    testImplementation'com.fasterxml.jackson.core:jackson-databind:2.16.0'
+    testImplementation 'com.fasterxml.jackson.core:jackson-core:2.16.0'
+    testImplementation 'com.fasterxml.jackson.core:jackson-databind:2.16.0'
+    testImplementation 'com.fasterxml.jackson.core:jackson-annotations:2.16.0'
 }
+
+
 
 
 test {

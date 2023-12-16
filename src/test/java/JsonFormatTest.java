@@ -1,32 +1,40 @@
 import com.fasterxml.jackson.databind.ObjectMapper;
-import Profile.Json;
+import model.Profile;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import static org.assertj.core.api.Assertions.assertThat;
-
+import java.util.List;
 public class JsonFormatTest {
-    ClassLoader cl = JsonFormatTest.class.getClassLoader();
+
+    private final ClassLoader classLoader = JsonFormatTest.class.getClassLoader();
     ObjectMapper objectMapper = new ObjectMapper();
 
-    @Test
-    @DisplayName("Проверка профиля специалиста")
-    void jsonTest() throws Exception {
 
-        try (
-                InputStream resource = cl.getResourceAsStream("Profile.json")
-        ) {
-            assert resource != null;
-            try (InputStreamReader reader = new InputStreamReader(resource)
-            ) {
-                Json Json = objectMapper.readValue(reader, Json.class);
-                assertThat(Json.name).isEqualTo("Helen");
-                assertThat(Json.profession).isEqualTo("qa");
-                assertThat(Json.age).isEqualTo(25);
-                assertThat(Json.skill).contains("Regression", "Smoke", "Zephyr");
+
+    @Test
+    @DisplayName("Проверка данных JSON")
+    void checkOptionsForFirstQuestion() throws Exception {
+        try (InputStream is = classLoader.getResourceAsStream("profile.json")) {
+            assert is != null;
+            try (InputStreamReader isr = new InputStreamReader(is)) {
+                Profile data;
+                data = objectMapper.readValue(isr, Profile.class);
+
+                Assertions.assertEquals("0001", data.id);
+                Assertions.assertEquals("qa", data.team);
+                Assertions.assertEquals("2.8", data.experience);
+                Assertions.assertEquals("Helen",
+                        data.name   );
+                Assertions.assertEquals(List.of(
+                        "Regression",
+                        "Smoke",
+                        "Mobile",
+                        "Web"), data.skill);
 
             }
         }
     }
+
 }
